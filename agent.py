@@ -23,19 +23,19 @@ import sys
 import threading
 import logging
 from flask import Flask, request, jsonify
+import os  # Make sure to import os at the top of agent.py
 
 # ─────────────────────────────────────────────
 # CONFIGURATION
 # ─────────────────────────────────────────────
-
-API_TOKEN   = "pk_88306048_KSCJW7VB9VIXYCXOTASQ008WGYB7B8O0"
+API_TOKEN = os.environ.get("CLICKUP_API_TOKEN", "your_local_backup_token_if_needed")
 LIST_ID     = "901416094383"
 SERVER_PORT = 5000
 
 # Public URL where this Flask server is reachable from Teams/Power Automate
 # Replace with your ngrok URL during dev, or your deployed server URL in prod
 # e.g. "https://abc123.ngrok-free.app" or "https://your-app.onrender.com"
-CALLBACK_BASE_URL = "https://YOUR-PUBLIC-URL-HERE"
+CALLBACK_BASE_URL = "https://clickup-teams-agent.onrender.com"
 
 # Manager webhook — receives overdue alerts
 MANAGER_WEBHOOK = "https://default3a7635f01d1e4df58e24716c29905a.57.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/95ee4607778e46d69abbe4bf90d9be84/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=HwiRkpl4OdkScYKs083Xle2IR1E2XNnVIMND9z86ZPE"
