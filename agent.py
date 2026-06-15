@@ -71,11 +71,6 @@ log = logging.getLogger(__name__)
 # ─────────────────────────────────────────────
 # CLICKUP API HELPERS
 # ─────────────────────────────────────────────
-@app.route("/daily-check", methods=["GET"])
-def trigger_check():
-    check_tasks()
-    return "Check complete", 200
-
 def clickup_headers():
     return {"Authorization": API_TOKEN, "Content-Type": "application/json"}
 
