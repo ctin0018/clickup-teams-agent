@@ -34,7 +34,7 @@ SERVER_PORT = 5000
 
 # Public URL where this Flask server is reachable from Teams/Power Automate
 # Replace with your ngrok URL during dev, or your deployed server URL in prod
-# e.g. "https://abc123.ngrok-free.app" or "https://your-app.onrender.com"
+# e.g. "https://abc123.ngrok-free.app" or "https://your-app.onrender.com"   
 CALLBACK_BASE_URL = "https://clickup-teams-agent.onrender.com"
 
 # Manager webhook — receives overdue alerts
@@ -71,6 +71,10 @@ log = logging.getLogger(__name__)
 # ─────────────────────────────────────────────
 # CLICKUP API HELPERS
 # ─────────────────────────────────────────────
+@app.route("/daily-check", methods=["GET"])
+def trigger_check():
+    check_tasks()
+    return "Check complete", 200
 
 def clickup_headers():
     return {"Authorization": API_TOKEN, "Content-Type": "application/json"}
